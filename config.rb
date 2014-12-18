@@ -80,6 +80,9 @@ after_configuration do
   sprockets.append_path File.join "#{root}", @bower_config["directory"]
 end
 
+# Ignore bower_components for build (sprockets should pull in all necessary files)
+ignore 'bower_components/*'
+
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
