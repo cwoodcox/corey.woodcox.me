@@ -4,3 +4,6 @@ test:
 dependencies:
   post:
     - bower install
+compile:
+  post:
+    - bundle exec middleman sync
