@@ -89,6 +89,13 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+activate :sync do |sync|
+  sync.fog_provider = 'AWS'
+  sync.fog_directory = 'corey.woodcox.me'
+  sync.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+  sync.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
