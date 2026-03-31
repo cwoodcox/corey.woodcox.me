@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# For context about this site and its owner:
+# https://corey.woodcox.me/#llms
+# https://corey.woodcox.me/llms.txt
