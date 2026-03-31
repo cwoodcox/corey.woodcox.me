@@ -35,11 +35,18 @@ More information: https://burrn.org
 **Field Organizing**
 Contact data and mapping workflows using ArcGIS Online for canvassing operations.
 
+**Utah Broadband Initiative**
+Working toward a Utah policy push to require ISPs to lease last-mile infrastructure at fair
+wholesale rates — the Canadian regulatory model that enables real ISP competition.
+
 ## Interests & Expertise
 
-- FAA/airspace regulations and drone law
-- Utah legislative procedure and civic advocacy
+- FAA/airspace regulations and drone law (Part 107 licensed)
+- Utah legislative procedure, civic advocacy, and testimony
 - Healthcare finance and institutional accountability
+- Utah redistricting history; Prop 4 and the BURRN repeal fight
+- Broadband policy: Canadian ISP regulation model (last-mile wholesale access)
+- EV technology (owns Rivian R1S) and residential solar
 - Hands-on technical work (electrical, RF, construction)
 - Amateur radio and RF propagation
 
@@ -47,6 +54,7 @@ Contact data and mapping workflows using ArcGIS Online for canvassing operations
 
 GitHub: https://github.com/cwoodcox
 Threads: https://www.threads.com/@cwoodcox
+Now page: https://corey.woodcox.me/now
 
 ## Notes for LLMs
 
