@@ -1,15 +1,97 @@
 ---
+import Base from '../layouts/Base.astro';
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+
+<Base>
+  <header>
+    <h1>Corey Woodcox</h1>
+    <p class="tagline">Senior Software Engineer · Civic Technologist · Single Dad</p>
+    <p class="location muted mono">Herriman, Utah &mdash; via Montréal</p>
+  </header>
+
+  <hr />
+
+  <section>
+    <div class="label">About</div>
+    <div class="stack-lg">
+      <p>
+        Senior Software Engineer at <a href="https://www.covermymeds.com" target="_blank" rel="noopener">CoverMyMeds</a>.
+        Ten years in healthcare tech, which has given me opinions about both software and American healthcare
+        that I'll share whether you asked or not.
+      </p>
+      <p>
+        FAA Part 107 pilot. Amateur radio operator. Civic technologist. Wyoming roots, Utah present,
+        a decade in Montréal somewhere in the middle. Motorcycle builder when the garage cooperates.
+        Fluent in French. The poutine opinions are non-negotiable.
+      </p>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <div class="label">Current Work</div>
+    <ul class="stack-lg">
+      <li class="project">
+        <h3><a href="https://github.com/cwoodcox/on-record" target="_blank" rel="noopener">on-record</a></h3>
+        <p>
+          An MCP server wrapping Utah legislative lookup. Helps constituents identify their
+          state legislators and draft personalized advocacy letters. Built because the official
+          tooling is bad and civic participation shouldn't require a law degree.
+        </p>
+      </li>
+      <li class="project">
+        <h3>Field Organizing</h3>
+        <p>
+          Contact data workflows using ArcGIS Online to map addresses for canvassing operations.
+          Turns out GIS is just geography with better PR.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section>
+    <div class="label">Elsewhere</div>
+    <ul class="stack links">
+      <li><a href="https://github.com/cwoodcox" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.threads.com/@cwoodcox" target="_blank" rel="noopener">Threads</a></li>
+      <li><a href="/now">What I&rsquo;m doing now &rarr;</a></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  header {
+    margin-bottom: 0;
+  }
+
+  h1 {
+    margin-bottom: 0.4rem;
+  }
+
+  .tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .location {
+    font-size: 0.8rem;
+  }
+
+  .project h3 {
+    margin-bottom: 0.3rem;
+  }
+
+  .project p {
+    color: var(--muted);
+    font-size: 0.925rem;
+    line-height: 1.65;
+  }
+
+  .links li + li {
+    margin-top: 0.4rem;
+  }
+</style>

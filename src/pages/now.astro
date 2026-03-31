@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Update this date whenever you update the page content
+const updated = 'March 2026';
+---
+
+<Base title="Now — Corey Woodcox" description="What Corey Woodcox is up to right now.">
+  <header>
+    <a href="/" class="back mono">&larr; corey.woodcox.me</a>
+    <h1>Now</h1>
+    <p class="muted mono updated">Updated {updated} &mdash; Herriman, UT</p>
+  </header>
+
+  <hr />
+
+  <section>
+    <div class="label">Building</div>
+    <ul class="stack">
+      <li>Expanding <strong>on-record</strong> — Utah legislative MCP server</li>
+      <li>Mapping canvassing operations with ArcGIS Online</li>
+      <li>This website, apparently</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section>
+    <div class="label">Thinking About</div>
+    <ul class="stack">
+      <li>Utah legislative session and what it means for constituent tooling</li>
+      <li>How much of healthcare admin overhead is just bad software</li>
+      <li>FAA Part 107 airspace stuff, as always</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section>
+    <div class="label">Otherwise</div>
+    <ul class="stack">
+      <li>Being a dad</li>
+      <li>Tinkering on something. Unclear what yet.</li>
+      <li>Watching the Jazz with calibrated expectations</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <p class="muted" style="font-size: 0.85rem;">
+    This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now page</a>.
+    No schedule, no format. Updated whenever something changes.
+  </p>
+</Base>
+
+<style>
+  header {
+    margin-bottom: 0;
+  }
+
+  .back {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-bottom: 0.3rem;
+  }
+
+  .updated {
+    font-size: 0.75rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+    font-family: var(--font-mono);
+  }
+</style>
