@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="r"><rect width="32" height="32" rx="5"/></clipPath>
+  </defs>
   <rect width="32" height="32" rx="5" fill="#0e0f0e"/>
   <!-- CW in Morse as a mountain silhouette: tall peak=dash, short peak=dot -->
   <!-- C: − · − ·   W: · − − -->
   <!-- deeper valley at x=18.5 marks the letter boundary -->
   <path
+    clip-path="url(#r)"
     d="M0,32 Q2,15 2.8,16.8 Q5,22 5.5,21 Q7,18 7.8,19 Q10,22 10.8,20.3 Q13,15 13.9,16.8 Q16.5,22 17,21 Q18.5,18 18.9,19.5 Q20,24 20.4,22.5 Q21.5,18 22.1,19 Q24,22 24.8,20.3 Q27,15 27.6,16.8 Q29.5,22 29.9,20.3 Q31,15 32,32 Z"
     fill="#5a9e8f"
   />
