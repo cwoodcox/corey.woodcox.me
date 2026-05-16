@@ -1,0 +1,257 @@
+---
+import Base from '../layouts/Base.astro';
+import toolsByRepo from '../data/mcp-tools.json';
+
+const username = 'cwoodcox';
+const topic = 'mcp-server';
+
+interface Repo {
+  name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  stargazers_count: number;
+  language: string | null;
+  topics: string[];
+  updated_at: string;
+}
+
+interface Tool {
+  name: string;
+  title?: string;
+}
+
+const tools = toolsByRepo as Record<string, Tool[]>;
+
+const headers: Record<string, string> = {
+  Accept: 'application/vnd.github+json',
+  'X-GitHub-Api-Version': '2022-11-28',
+};
+const token = import.meta.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN;
+if (token) headers.Authorization = `Bearer ${token}`;
+
+const query = encodeURIComponent(`user:${username} topic:${topic} archived:false`);
+const url = `https://api.github.com/search/repositories?q=${query}&sort=updated&per_page=100`;
+
+let repos: Repo[] = [];
+let fetchError: string | null = null;
+try {
+  const res = await fetch(url, { headers });
+  if (!res.ok) throw new Error(`GitHub API ${res.status}: ${res.statusText}`);
+  const data = (await res.json()) as { items: Repo[] };
+  repos = data.items ?? [];
+} catch (err) {
+  fetchError = err instanceof Error ? err.message : String(err);
+  console.warn('[mcp] GitHub fetch failed:', fetchError);
+}
+
+const fmtDate = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+---
+
+<Base
+  title="MCP Servers — Corey Woodcox"
+  description="Model Context Protocol servers built by Corey Woodcox."
+>
+  <header>
+    <a href="/" class="back mono">&larr; corey.woodcox.me</a>
+    <h1>MCP Servers</h1>
+    <p class="muted mono updated">Model Context Protocol &mdash; tools for LLMs</p>
+  </header>
+
+  <hr />
+
+  <section>
+    <div class="label">About</div>
+    <p class="intro">
+      Small, focused <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP</a>
+      servers I&rsquo;ve built &mdash; mostly civic and utility data sources I wanted my own LLM tools
+      to reach. Listed automatically from public GitHub repos tagged <code>{topic}</code>.
+    </p>
+  </section>
+
+  <hr />
+
+  <section>
+    <div class="label">Servers</div>
+    {fetchError ? (
+      <p class="muted">Couldn&rsquo;t reach GitHub at build time: <code>{fetchError}</code></p>
+    ) : repos.length === 0 ? (
+      <p class="muted">
+        No public repos tagged <code>{topic}</code> yet. Add the topic on a repo&rsquo;s GitHub
+        page (gear icon next to About) and it&rsquo;ll show up on the next build.
+      </p>
+    ) : (
+      <ul class="stack-lg cards">
+        {repos.map((repo) => (
+          <li class="card">
+            <div class="card-header">
+              <h3>
+                <a href={repo.html_url} target="_blank" rel="noopener">{repo.name}</a>
+              </h3>
+              {repo.stargazers_count > 0 && (
+                <span class="stars mono">&#9733; {repo.stargazers_count}</span>
+              )}
+            </div>
+            {repo.description && <p class="desc">{repo.description}</p>}
+            {tools[repo.name] && tools[repo.name].length > 0 && (
+              <div class="tools">
+                <span class="tools-label mono">tools</span>
+                <ul class="tool-list">
+                  {tools[repo.name].map((tool) => (
+                    <li>
+                      {tool.title ? (
+                        <>
+                          <span class="tool-title">{tool.title}</span>
+                          <code class="tool-name mono">{tool.name}</code>
+                        </>
+                      ) : (
+                        <code class="tool-name mono">{tool.name}</code>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div class="meta mono">
+              {repo.language && <span>{repo.language}</span>}
+              <span>updated {fmtDate(repo.updated_at)}</span>
+              {repo.homepage && (
+                <a href={repo.homepage} target="_blank" rel="noopener">homepage &rarr;</a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</Base>
+
+<style>
+  header {
+    margin-bottom: 0;
+  }
+
+  .back {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  h1 {
+    margin-bottom: 0.3rem;
+  }
+
+  .updated {
+    font-size: 0.75rem;
+  }
+
+  .intro {
+    color: var(--muted);
+    font-size: 0.925rem;
+    line-height: 1.65;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--accent-dim);
+  }
+
+  .cards {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+    background: var(--surface);
+    transition: border-color 0.15s ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent-dim);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card h3 {
+    margin: 0;
+  }
+
+  .stars {
+    color: var(--muted);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .desc {
+    color: var(--muted);
+    font-size: 0.925rem;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .tools {
+    margin: 0.5rem 0 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+  }
+
+  .tools-label {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+
+  .tool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tool-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    line-height: 1.4;
+  }
+
+  .tool-title {
+    color: var(--text);
+  }
+
+  .tool-name {
+    color: var(--accent-dim);
+    font-size: 0.72rem;
+  }
+</style>
