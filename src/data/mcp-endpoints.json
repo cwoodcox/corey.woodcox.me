@@ -1,6 +1,6 @@
 {
-  "on-record": null,
-  "pvwatts-mcp": null,
-  "ugrc-mcp": null,
-  "utah-water-rights-mcp": null
+  "on-record": "https://agents.getonrecord.org/mcp",
+  "pvwatts-mcp": "https://pvwatts-mcp.ompwwcx2yz.workers.dev/mcp",
+  "ugrc-mcp": "https://ugrc-mcp.ompwwcx2yz.workers.dev/mcp",
+  "utah-water-rights-mcp": "https://utah-diwr-mcp.ompwwcx2yz.workers.dev/mcp"
 }
