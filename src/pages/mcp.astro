@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import toolsByRepo from '../data/mcp-tools.json';
+import endpointsByRepo from '../data/mcp-endpoints.json';
+
+const CLAUDE_CONNECTORS_URL = 'https://claude.ai/settings/connectors?modal=add-custom-connector';
 
 const username = 'cwoodcox';
 const topic = 'mcp-server';
@@ -22,6 +25,7 @@ interface Tool {
 }
 
 const tools = toolsByRepo as Record<string, Tool[]>;
+const endpoints = endpointsByRepo as Record<string, string | null>;
 
 const headers: Record<string, string> = {
   Accept: 'application/vnd.github+json',
@@ -113,6 +117,20 @@ const fmtDate = (iso: string) =>
                 </ul>
               </div>
             )}
+            {endpoints[repo.name] && (
+              <div class="connect">
+                <code class="endpoint mono">{endpoints[repo.name]}</code>
+                <a
+                  class="connect-btn mono"
+                  href={CLAUDE_CONNECTORS_URL}
+                  target="_blank"
+                  rel="noopener"
+                  data-mcp-url={endpoints[repo.name]}
+                >
+                  Add to Claude &rarr;
+                </a>
+              </div>
+            )}
             <div class="meta mono">
               {repo.language && <span>{repo.language}</span>}
               <span>updated {fmtDate(repo.updated_at)}</span>
@@ -126,6 +144,29 @@ const fmtDate = (iso: string) =>
     )}
   </section>
 </Base>
+
+<script>
+  // Copy the MCP server URL to clipboard the moment the user clicks "Add to Claude",
+  // so the modal that opens at claude.ai is ready to receive a paste.
+  document.querySelectorAll<HTMLAnchorElement>('a.connect-btn[data-mcp-url]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const url = btn.dataset.mcpUrl;
+      if (!url || !navigator.clipboard) return;
+      try {
+        await navigator.clipboard.writeText(url);
+        const original = btn.textContent ?? '';
+        btn.textContent = 'URL copied — paste in Claude';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 2500);
+      } catch {
+        // Clipboard write blocked (e.g. insecure context); link still navigates.
+      }
+    });
+  });
+</script>
 
 <style>
   header {
@@ -253,5 +294,50 @@ const fmtDate = (iso: string) =>
   .tool-name {
     color: var(--accent-dim);
     font-size: 0.72rem;
+  }
+
+  .connect {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin: 0.5rem 0 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+  }
+
+  .endpoint {
+    color: var(--muted);
+    font-size: 0.72rem;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .connect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.72rem;
+    border: 1px solid var(--accent-dim);
+    border-radius: 4px;
+    color: var(--accent);
+    transition: background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .connect-btn:hover {
+    background: var(--accent-dim);
+    color: var(--bg);
+    text-decoration: none;
+  }
+
+  .connect-btn.copied {
+    background: var(--accent-dim);
+    color: var(--bg);
   }
 </style>
