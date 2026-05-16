@@ -1,39 +1,120 @@
 {
   "on-record": [
-    { "name": "resolve_address" },
-    { "name": "search_bills" },
-    { "name": "lookup_legislator" }
+    {
+      "name": "lookup_legislator"
+    },
+    {
+      "name": "resolve_address"
+    },
+    {
+      "name": "search_bills"
+    }
   ],
   "pvwatts-mcp": [
-    { "name": "pvwatts_run" },
-    { "name": "solar_potential_for_acres" }
+    {
+      "name": "pvwatts_run"
+    },
+    {
+      "name": "solar_potential_for_acres"
+    }
   ],
   "ugrc-mcp": [
-    { "name": "list_layers" },
-    { "name": "describe_layer" },
-    { "name": "query_layer" },
-    { "name": "aggregate_layer" },
-    { "name": "arcgis_query_raw" }
+    {
+      "name": "list_layers"
+    },
+    {
+      "name": "describe_layer"
+    },
+    {
+      "name": "query_layer"
+    },
+    {
+      "name": "aggregate_layer"
+    },
+    {
+      "name": "arcgis_query_raw"
+    }
   ],
   "utah-water-rights-mcp": [
-    { "name": "uwr_county_codes", "title": "List Utah County Codes" },
-    { "name": "uwr_location_info", "title": "Resolve Coordinates to DWR Area" },
-    { "name": "uwr_waterway_network", "title": "Get Waterway Network for Bounding Box" },
-    { "name": "uwr_flowline_details", "title": "Get Flowline Details" },
-    { "name": "uwr_accounting_graphs", "title": "List Distribution Accounting Graphs" },
-    { "name": "uwr_allocations", "title": "Query Water Right Allocations" },
-    { "name": "uwr_allocations_summary", "title": "Get Allocation Summary Statistics" },
-    { "name": "uwr_zone_balance", "title": "Get Zone Account Balance" },
-    { "name": "uwr_zone_apportionments", "title": "Get Daily Flow Apportionments for Zone" },
-    { "name": "uwr_zone_totals", "title": "Get Daily Flow Totals for Zone" },
-    { "name": "uwr_flow_apportionments", "title": "Get Interzone Flow Apportionments" },
-    { "name": "uwr_accounting_graph_detail", "title": "Load Stored Accounting Graph" },
-    { "name": "uwr_reservoir_storage", "title": "Get Kalman-Smoothed Reservoir Storage" },
-    { "name": "uwr_search_by_owner", "title": "Search Water Rights by Owner Name" },
-    { "name": "uwr_search_by_source", "title": "Search Water Rights by Water Source" },
-    { "name": "uwr_water_right_detail", "title": "Get Water Right Master Detail" },
-    { "name": "uwr_water_right_uses", "title": "Get Water Right Use Allocations" },
-    { "name": "uwr_scanned_documents", "title": "List Scanned Documents for a Water Right" },
-    { "name": "uwr_wrdb_query", "title": "Query wrDB Table (advanced)" }
+    {
+      "name": "uwr_county_codes",
+      "title": "List Utah County Codes"
+    },
+    {
+      "name": "uwr_location_info",
+      "title": "Resolve Coordinates to DWR Area"
+    },
+    {
+      "name": "uwr_waterway_network",
+      "title": "Get Waterway Network for Bounding Box"
+    },
+    {
+      "name": "uwr_flowline_details",
+      "title": "Get Flowline Details"
+    },
+    {
+      "name": "uwr_accounting_graphs",
+      "title": "List Distribution Accounting Graphs"
+    },
+    {
+      "name": "uwr_allocations",
+      "title": "Query Water Right Allocations"
+    },
+    {
+      "name": "uwr_allocations_summary",
+      "title": "Get Allocation Summary Statistics"
+    },
+    {
+      "name": "uwr_zone_balance",
+      "title": "Get Zone Account Balance"
+    },
+    {
+      "name": "uwr_zone_apportionments",
+      "title": "Get Daily Flow Apportionments for Zone"
+    },
+    {
+      "name": "uwr_zone_totals",
+      "title": "Get Daily Flow Totals for Zone"
+    },
+    {
+      "name": "uwr_flow_apportionments",
+      "title": "Get Interzone Flow Apportionments"
+    },
+    {
+      "name": "uwr_accounting_graph_detail",
+      "title": "Load Stored Accounting Graph"
+    },
+    {
+      "name": "uwr_reservoir_storage",
+      "title": "Get Kalman-Smoothed Reservoir Storage"
+    },
+    {
+      "name": "uwr_search_by_owner",
+      "title": "Search Water Rights by Owner Name"
+    },
+    {
+      "name": "uwr_search_by_source",
+      "title": "Search Water Rights by Water Source"
+    },
+    {
+      "name": "uwr_application_tracker",
+      "title": "List Pending/Recent Water Right Applications"
+    },
+    {
+      "name": "uwr_water_right_detail",
+      "title": "Get Water Right Master Detail"
+    },
+    {
+      "name": "uwr_water_right_uses",
+      "title": "Get Water Right Use Allocations"
+    },
+    {
+      "name": "uwr_scanned_documents",
+      "title": "List Scanned Documents for a Water Right"
+    },
+    {
+      "name": "uwr_wrdb_query",
+      "title": "Query wrDB Table (advanced)"
+    }
   ]
 }

@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "mcp:discover": "node scripts/discover-mcp-tools.js"
   },
   "dependencies": {
     "astro": "^6.1.2"
